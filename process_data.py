@@ -58,7 +58,7 @@ def save_data(df, database_filename):
 
 
 def main():
-    """  """
+    """ Main execution block """
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
