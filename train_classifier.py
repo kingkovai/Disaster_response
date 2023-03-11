@@ -69,7 +69,7 @@ def tokenize(text):
 
 def build_model():
     """
-    Builts and return pipeline with data transformation and classification steps
+    Builts and return cross validation pipeline with data transformation and classification steps
     """
     vect = CountVectorizer(tokenizer=tokenize)
     tfid_trn = TfidfTransformer()
@@ -80,7 +80,10 @@ def build_model():
         ('tfid_trn_stp', TfidfTransformer()),
         ('clf_stp', MultiOutputClassifier(LogisticRegression()) )] )
     
-    return pipeline
+    parameters = {'clf_stp__n_jobs': [1, 2, 4] }
+    cv = GridSearchCV(pipeline, param_grid=parameters)
+    
+    return cv
     
 def f_score(func,y_test,y_hat):
     """
@@ -128,7 +131,9 @@ def save_model(model, model_filepath):
 
 
 def main():
-    """ Main execution block """
+    """
+    Main execution block
+    """
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
@@ -140,12 +145,14 @@ def main():
         
         print('Training model...')
         model.fit(X_train, Y_train)
+        #select the best estimator from the cross validation
+        bst_model=model.best_estimator_
         
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+        evaluate_model(bst_model, X_test, Y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
-        save_model(model, model_filepath)
+        save_model(bst_model, model_filepath)
 
         print('Trained model saved!')
 
