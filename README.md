@@ -7,11 +7,11 @@
 #### Installations
  - Pandas ,Flask ,sklearn ,plotly
 #### Dataset
- Based on the provide input files , data is cleaned/transformed and used for training the model
+ Based on the provided input files , data is cleaned/transformed and used for training the model
 #### Files in the project
  - **process_data.py**  - File for ETL processing , this takes dataset as input and save SQLite database in provide path 
               `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
- - **train_classifier.py**  - File that read data from database file and then train and save the model in provide path 
+ - **train_classifier.py**  - File that read data from database file and then train and save the model in provided path 
                `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
  - **run.py**  - File that setup Flask web UI where user can provide text message and it returns relevant labels based on the text.
  
