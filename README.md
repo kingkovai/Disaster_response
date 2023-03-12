@@ -15,8 +15,8 @@
                `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
  - **run.py**  - File that setup Flask web UI where user can provide text message and it returns relevant labels based on the text.
  
-###Github
-  [Link of Github](https://github.com/kingkovai/Disaster_response.git)
+#### Github
+  - [Link of Github](https://github.com/kingkovai/Disaster_response.git)
  
 
 
