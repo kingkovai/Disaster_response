@@ -54,7 +54,7 @@ def save_data(df, database_filename):
     Create Sqlite DB and save the cleaned data as table
     """
     engine = create_engine('sqlite:///'+database_filename)
-    df.to_sql('cleanedmessage', engine, index=False)  
+    df.to_sql('cleanedmessage', engine, index=False,if_exists='replace')  
 
 
 def main():
