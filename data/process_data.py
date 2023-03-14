@@ -46,6 +46,9 @@ def clean_data(df):
     # drop duplicates
     df=df[~df.duplicated()]
     
+    # replace target value with 2 as 0
+    df.loc[df.related==2,'related']=0
+    
     return df
 
 
