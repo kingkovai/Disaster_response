@@ -44,8 +44,8 @@ def load_data(database_filepath):
     #Drop child_alone feature as they only have one class
     Y = df[['related', 'request', 'offer', 'aid_related', 'medical_help', 'medical_products', 'search_and_rescue', 'security', 'military',  'water', 'food', 'shelter', 'clothing', 'money', 'missing_people', 'refugees', 'death', 'other_aid', 'infrastructure_related', 'transport', 'buildings', 'electricity', 'tools', 'hospitals', 'shops', 'aid_centers', 'other_infrastructure', 'weather_related', 'floods', 'storm', 'fire', 'earthquake', 'cold', 'other_weather', 'direct_report']]
     
-    #feature related which is an indicator field is having value as 2 .As that is not possible replacing 2 with 1
-    Y.loc[Y.related==2,'related']=1
+    #feature related which is an indicator field is having value as 2 .As that is not possible replacing 2 with 0
+    Y.loc[Y.related==2,'related']=0
     Y.iloc[:,:] = Y.iloc[:,:].astype(bool)
     
     return X,Y ,list(Y.columns)
