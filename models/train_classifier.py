@@ -46,6 +46,8 @@ def load_data(database_filepath):
     
     #feature related which is an indicator field is having value as 2 .As that is not possible replacing 2 with 1
     Y.loc[Y.related==2,'related']=1
+    Y.iloc[:,:] = Y.iloc[:,:].astype(bool)
+    
     return X,Y ,list(Y.columns)
 
 
